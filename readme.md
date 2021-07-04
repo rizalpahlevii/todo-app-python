@@ -24,5 +24,3 @@
     pip install -U Flask-SQLAlchemy
     ```
 
-## Installation
-
