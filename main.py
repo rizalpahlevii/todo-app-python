@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "todo.db"))
+print(database_file)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 db = SQLAlchemy(app)
 
@@ -51,7 +52,8 @@ def view_index():
 @app.route("/edit/<note_id>", methods=["POST", "GET"])
 def edit_note(note_id):
     if request.method == "POST":
-        update_note(note_id, text=request.form['text'], done=request.form['done'])
+        update_note(
+            note_id, text=request.form['text'], done=request.form['done'])
     elif request.method == "GET":
         delete_note(note_id)
     return redirect("/", code=302)
